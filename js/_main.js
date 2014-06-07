@@ -27,7 +27,7 @@
 	pageNames[1] = "Bio";
 	pageNames[2] = "Members";
 	pageNames[3] = "Videos";
-	pageNames[4] = "Photos";	
+	pageNames[4] = "Press";	
 
     //FadeIn all sections   
 	$body.imagesLoaded( function() {
