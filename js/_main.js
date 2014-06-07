@@ -54,6 +54,7 @@
 		    
 		        //Debugging - Log the current scroll position.
 		        //console.log(data.curTop);
+			document.querySelector('.scrollpos').innerHTML = data.curTop;
 		    }
 		});
 		
