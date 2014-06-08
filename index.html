@@ -18,7 +18,11 @@
 		<!--[if IE lt 9]>
 		<link href="css/youtube-video-gallery-legacy-ie.css" type="text/css" rel="stylesheet"/>
 		<![endif]-->
+		
+				
         <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+	<script src="https://apis.google.com/js/platform.js"></script>
+
         <style type="text/css">
 			body {
 				font-family: 'Open Sans', sans-serif;
@@ -26,19 +30,39 @@
 		</style>
     </head>
     <body class="loading">
-		
+				
 		<div class="scrollpos"></div>
+		
+		
+		<ul id="social_links">
+				<li><a href="http://facebook.com/mrittikaband" title="visit the facebook page" target="_blank"><img src="img/facebook.png" alt="facebook"/></a></li>						
+				<!--<li><a href="www.twitter.com" target="_blank"><img src="img/twitter.png" title="visit the twitter profile" alt="twitter"/></a></li>-->
+				<li><a href="https://www.youtube.com/channel/UC1mYjqEFPXs4aSIEBIdeGKA" title="visit the youtube channel" target="_blank"><img src="img/youtube.png" alt="youtube"/></a></li>
+				
+		</ul>
+		
+		<ul id="footer_links">
+				<li><a href="#" title="download the Tech Rider"><img src="img/PDF.png" height="32" alt="pdf"/>Tech Rider</a></li><li class="separator">|</li>
+				<li>Mail: <a href="mailto:contact@mrittika.in" title="write to us" title="download the Tech Rider">contact@mrittika.in</a></li><li class="separator">|</li>
+				<li>Call: (+91)9830905487</li>
+		</ul>
+		
+		
+		
     
        	<main>
        	 
 	        <section id="slide-1" class="homeSlide">
 			<div class="bcg" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#slide-1">
-<!-- 		        	<div class="hsContainer">
-					<div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-1 h2">
-						<h2>Fade out elements before<br />they leave viewport</h2>
-						<p>This slide moves background image at a slower speed then the page scroll. Text is fading out to opacity 0 at 106 pixels from the top.</p>
+ 		        	<!--<div class="hsContainer">
+					<div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-1 h3">
+						<h3 class="bgBlack">Fusion band</h3>
+						<ul id="social_feeds"></ul>
 					</div>
-				</div> -->						
+				</div>-->
+				
+				<ul id="social_feeds"></ul>
+				
 			</div>
 		    </section>
 		    
@@ -156,6 +180,8 @@
 									<li><a href="http://www.youtube.com/watch?v=U7p3IYjoc74">Saiyaan by Mrittika - Music Mojo Kappa TV</a></li>
 									<li><a href="http://www.youtube.com/watch?v=tlkqUEmqnwI">Tarse by Mrittika - Music Mojo Kappa TV</a></li>-->
 								</ul>
+								<div class="g-ytsubscribe" data-channelid="UC1mYjqEFPXs4aSIEBIdeGKA" data-layout="full" data-theme="dark" data-count="hidden"></div>
+								
 						</div>
 					</div>
 				</div>
@@ -169,11 +195,10 @@
 		    	</div>
 		    	<div class="bcg bcg2" data-bottom-top="opacity: 0;" data--33p-top="opacity: 0;" data--66p-top="opacity: 1;" data-anchor-target="#slide-5">
 			    	<div class="hsContainer">
-				    	<div class="hsContent" data-bottom-top="opacity: 0;" data-center="opacity: 1" data-anchor-target="#slide-5">
-				    		<h2>Press Links</h2>
-				    		<ul>
-								<li>link 1</li>
-								<li>link 2</li>
+				    	<div class="hsContent" data-bottom-top="opacity: 0;" data-center="opacity: 1" data-anchor-target="#slide-5">				    		
+				    		<ul id="articles">
+								<li><a href="http://www.thehindu.com/features/cinema/tunes-from-kolkata/article5973274.ece" title="Tunes From Kolkata - The Hindu (May 4, 2014)" target="_blank"><img src="img/articles/the_hindu_20140504.png" alt=""/></a></li>
+								<li><a href="http://epaper.telegraphindia.com/details/40073-17620671.html" title="Mrittika Interview - The Telegraph (October 26, 2013)" target="_blank"><img src="img/articles/the_telegraph_20131026.png" alt=""/></a></li>
 						</ul>
 			    		</div>
 			    	</div>
@@ -194,40 +219,65 @@
 		<script src="js/_main.js"></script>
 		
 		<script src="js/jquery.youtubevideogallery.js"></script>
-		<script>
-				var apiKey = "AIzaSyB82o6B5TLfspdRkk1zFGfFu1xBF-8HHRg";
-				var maxVideosPerPlaylist = 15;
-				$(document).ready(function(){
-						// Fetch youtube videos
-						var apiUrl_playlists = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=UC1mYjqEFPXs4aSIEBIdeGKA&fields=items%2Fid&key=" + apiKey;
-						$.get(apiUrl_playlists, function(playlistResponse) {
-								var numPlaylists = playlistResponse.items.length;
-								console.log("Number of playlists: " + numPlaylists);
-								for (var p = 0; p < numPlaylists; p++) {
-										var playlistId = playlistResponse.items[p].id;
-										console.log("playlistId: " + playlistId);
-										var apiUrl_videos = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + playlistId + "&fields=items/snippet(title,resourceId/videoId)&maxResults=" + maxVideosPerPlaylist + "&key=" + apiKey;
-										$.get(apiUrl_videos, function(videoResponse) {
-												var numVideos = videoResponse.items.length;
-												console.log("Number of videos: " + numVideos);
-												var ytLink = "http://www.youtube.com/watch?v=";
-												for (var v = 0; v < numVideos; v++) {
-														var title = videoResponse.items[v].snippet.title;
-														var videoId = videoResponse.items[v].snippet.resourceId.videoId;
-														console.log("videoId: " + videoId);
-														var $videoLink = "<li><a href='" + ytLink + videoId + "'>" + title + "</a></li>";
-														$("ul.youtube-video-gallery").append($videoLink);
-												}
-										
-												$("ul.youtube-video-gallery").youtubeVideoGallery({ assetFolder: 'img'});
-										});	
-								}
+
+		<script type="text/javascript">
+				
+
+
+
+
+
+				
+		var channelId = "UC1mYjqEFPXs4aSIEBIdeGKA";
+		var apiKey = "AIzaSyB82o6B5TLfspdRkk1zFGfFu1xBF-8HHRg";
+		var maxVideosPerPlaylist = 15;
+		$(document).ready(function(){
+				// Fetch youtube videos
+				var apiUrl_playlists = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=" + channelId + "&fields=items%2Fid&key=" + apiKey;
+				console.log("ytApiUrl_playlists: " + apiUrl_playlists);
+				$.get(apiUrl_playlists, function(playlistResponse) {
+						var numPlaylists = playlistResponse.items.length;
+						console.log("Number of playlists: " + numPlaylists);
+						for (var p = 0; p < numPlaylists; p++) {
+								var playlistId = playlistResponse.items[p].id;
+								console.log("playlistId: " + playlistId);
+								var apiUrl_videos = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + playlistId + "&fields=items/snippet(title,resourceId/videoId)&maxResults=" + maxVideosPerPlaylist + "&key=" + apiKey;
+								$.get(apiUrl_videos, function(videoResponse) {
+										var numVideos = videoResponse.items.length;
+										console.log("Number of videos: " + numVideos);
+										var ytLink = "http://www.youtube.com/watch?v=";
+										for (var v = 0; v < numVideos; v++) {
+												var title = videoResponse.items[v].snippet.title;
+												var videoId = videoResponse.items[v].snippet.resourceId.videoId;
+												console.log("videoId: " + videoId);
+												var $videoLink = "<li><a href='" + ytLink + videoId + "'>" + title + "</a></li>";
+												$("ul.youtube-video-gallery").append($videoLink);
+										}
 								
-						});
-						
-						
+										$("ul.youtube-video-gallery").youtubeVideoGallery({ assetFolder: 'img'});
+								});	
+						}
 						
 				});
+				
+				var fbPageId = "114230362096575";
+				$.get("https://www.facebook.com/feeds/page.php?format=json&id=" + fbPageId, function(data) {
+						var numEntries = data.entries.length;
+						var iconUrl = data.icon;
+						for(var i = 0; i < numEntries; i++) {
+								var content = data.entries[i].content;
+								var title = data.entries[i].title;
+								var published = data.entries[i].published;
+								var date = new Date(published.substr(0, 10)).toLocaleDateString();
+								$("#social_feeds").append("<li><img src=" + iconUrl + " alt/>&nbsp;<em class='published'>" + date + "</em>: <strong>" + title + "</strong><p>" + content + "</li>");
+						}
+						
+				});
+				
+				
+		});
 		</script>
+				
+		
     </body>
 </html>
