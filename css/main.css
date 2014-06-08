@@ -174,36 +174,56 @@ ul#footer_links {
     color: #ebebeb;
 }
 
-ul#social_feeds {
-    list-style: none;
+#social_feeds {
     position: fixed;
-    top: 0;
-    right: 0;
+    bottom: 50px;
+    left: 0;
     z-index: 13;
-    height: 300px;
-    width: 200px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: rgba(255,255,255, 0.7);
+    width: 250px;    
+    background-color: #ebebeb;
     font-size: smaller;
-    padding: 10px;
-    border: 5px solid white;
+    margin: 10px;
+    color: #333;
+    
+    -moz-border-radius: 5px;  /* for Firefox */
+    -webkit-border-radius: 5px; /* for Webkit-Browsers */
+    border-radius: 5px; /* regular */
+    border: 5px solid #ebebeb;
+    
+    box-shadow: 2px 2px 2px #111;
+    -moz-box-shadow: 2px 2px 2px #111;
+    -webkit-box-shadow: 2px 2px 2px #111;
 }
-ul#social_feeds li {
+
+#social_feeds ul {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#social_feeds .fb-like {
+    height: 20px;
+}
+#social_feeds li {
     border-bottom: 1px solid #AAA;
     padding-top: 10px;
 }
-ul#social_feeds a {
+#social_feeds a {
     color: #333;
-    text-decoration: underline;    
+    text-decoration: underline;
 }
-ul#social_feeds img {
-    max-width: 180px;
+#social_feeds img {
+    max-width: 200px;
 }
 
-ul#social_feeds a:hover {
-    color: #111;    
+#social_feeds a:hover {
+    color: #eee;    
 }
+
+
+
 ul#footer_links li {
     padding: 0.3em;
 }
@@ -361,9 +381,9 @@ ul#articles img {
 	display: none;
 	position: fixed;
 	right: 0;
-	top: 60%;
+	top: 50%;
 	margin-top: -80px;
-	z-index: 11;
+	z-index: 20;
 }
 #slideNav ul {
 	list-style: none;

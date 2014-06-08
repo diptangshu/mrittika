@@ -30,7 +30,17 @@
 		</style>
     </head>
     <body class="loading">
-				
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1404143096540699&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 		<div class="scrollpos"></div>
 		
 		
@@ -38,7 +48,7 @@
 				<li><a href="http://facebook.com/mrittikaband" title="visit the facebook page" target="_blank"><img src="img/facebook.png" alt="facebook"/></a></li>						
 				<!--<li><a href="www.twitter.com" target="_blank"><img src="img/twitter.png" title="visit the twitter profile" alt="twitter"/></a></li>-->
 				<li><a href="https://www.youtube.com/channel/UC1mYjqEFPXs4aSIEBIdeGKA" title="visit the youtube channel" target="_blank"><img src="img/youtube.png" alt="youtube"/></a></li>
-				
+								
 		</ul>
 		
 		<ul id="footer_links">
@@ -54,15 +64,18 @@
        	 
 	        <section id="slide-1" class="homeSlide">
 			<div class="bcg" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#slide-1">
- 		        	<!--<div class="hsContainer">
+<!-- 		        	<div class="hsContainer">
 					<div class="hsContent" data-center="opacity: 1" data-106-top="opacity: 0" data-anchor-target="#slide-1 h3">
 						<h3 class="bgBlack">Fusion band</h3>
-						<ul id="social_feeds"></ul>
 					</div>
 				</div>-->
 				
-				<ul id="social_feeds"></ul>
+				<div id="social_feeds">
+						<ul></ul>
+						<div class="fb-like" data-href="http://www.facebook.com/mrittikaband" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+				</div>
 				
+
 			</div>
 		    </section>
 		    
@@ -269,7 +282,7 @@
 								var title = data.entries[i].title;
 								var published = data.entries[i].published;
 								var date = new Date(published.substr(0, 10)).toLocaleDateString();
-								$("#social_feeds").append("<li><img src=" + iconUrl + " alt/>&nbsp;<em class='published'>" + date + "</em>: <strong>" + title + "</strong><p>" + content + "</li>");
+								$("#social_feeds ul").append("<li><img src=" + iconUrl + " alt/>&nbsp;<em class='published'>" + date + "</em>: <strong>" + title + "</strong><p>" + content + "</li>");
 						}
 						
 				});
