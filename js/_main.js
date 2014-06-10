@@ -86,7 +86,8 @@
 		var pageBtnLinks = "";
 		for (var i=0; i<pageNames.length; ++i) {
 			
-			pageBtnLinks += "<li><a href=\"#\" title=\"Go to " + pageNames[i] + " page\"><span id=\"" + i + "\">" + pageNames[i] + "</li>";
+			
+			pageBtnLinks += "<li" + ((i==0)? " class='first'" : ((i==pageNames.length-1)? " class='last'" : ""))+ "><a href=\"#\" title=\"Go to " + pageNames[i] + " page\"><span id=\"" + i + "\">" + pageNames[i] + "</li>";
 		}
 		
 		// Build HTML for Nav
@@ -134,11 +135,13 @@
 		
 		$("#slideNav a").click(function (e) {
 			e.preventDefault();
-			var index = parseInt($(this).find("span").attr("id"));	   	        
+			var index = parseInt($(this).find("span").attr("id"));
+			console.log("index: " + index);
 			scrollToSlide(index+1);			    
 		});		   
 	    
 		function scrollToSlide(slideId){
+			console.log("scrolling to slide: " + slideId);
 			
 			// Custom slide content offset
 		    var customSlideOffset = $("#slide-"+slideId).attr('data-content-offset');

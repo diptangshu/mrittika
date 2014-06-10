@@ -134,6 +134,14 @@ section {
 	-moz-transition: opacity 300ms ease-out;
 	transition: opacity 300ms ease-out;
 }
+
+.hud {
+    opacity: 0;
+}
+.loaded .hud {
+    opacity: 1;
+}
+
 main {
 	overflow-x: hidden;
 }
@@ -159,11 +167,14 @@ ul#social_links {
     list-style: none;
     position: fixed;
     z-index: 12;    
-    top: 0;
-    left: 0;
+    bottom: 0;
+    right: 0;
 }
 ul#social_links li, ul#footer_links li {
     display: inline;
+}
+ul#footer_links li {
+    margin-right: 1em;
 }
 ul#footer_links {
     list-style: none;
@@ -180,7 +191,7 @@ ul#footer_links {
     left: 0;
     z-index: 13;
     width: 250px;    
-    background-color: #ebebeb;
+    background-color: rgba(206,208,208,0.8);
     font-size: smaller;
     margin: 10px;
     color: #333;
@@ -193,6 +204,9 @@ ul#footer_links {
     box-shadow: 2px 2px 2px #111;
     -moz-box-shadow: 2px 2px 2px #111;
     -webkit-box-shadow: 2px 2px 2px #111;
+}
+#social_feeds .loading {
+    background: url('../img/ico_loading.gif') no-repeat center center;
 }
 
 #social_feeds ul {
@@ -252,6 +266,21 @@ ul#articles img {
 	box-sizing: border-box;
 	-webkit-box-shadow: 5px 5px 5px #111;
 	box-shadow: 5px 5px 5px #111;  
+}
+
+#credit {
+    color: #ebebeb;
+    font-size: x-small;
+    z-index: 15;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+}
+#credit a {
+    color: #ebebeb;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 /* Slide 1 */
@@ -396,8 +425,22 @@ ul#articles img {
 	height: 50px;
 	line-height: 50px;
 	background-color: rgba(255,255,255,0.70);
+	border-left: 5px solid rgba(255,255,255,0.70);
 	margin-bottom: 1px;
 }
+#slideNav li.first {
+    -moz-border-top-left-radius: 5px;  /* for Firefox */
+    -webkit-border-top-left-radius: 5px; /* for Webkit-Browsers */
+    border-top-left-radius: 5px; /* regular */    
+    border-top: 5px solid rgba(255,255,255,0.70);
+}
+#slideNav li.last {
+    -moz-border-bottom-left-radius: 5px;  /* for Firefox */
+    -webkit-border-bottom-left-radius: 5px; /* for Webkit-Browsers */
+    border-bottom-left-radius: 5px; /* regular */    
+    border-bottom: 5px solid rgba(255,255,255,0.70);
+}
+
 .no-rgba  #slideNav li {background-color: #ffffff}
 #slideNav a {
 	display: block;
