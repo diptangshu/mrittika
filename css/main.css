@@ -393,7 +393,7 @@ ul#articles img {
 	-moz-transition-duration: 0.5s;       
 	-o-transform-origin: top;    
 	-o-transition-duration: 0.5s;
-	font-size: 16px;
+	font-size: small;
 	font-family: Arial;       
 	font-weight: normal;
 	text-align:center;
