@@ -161,6 +161,7 @@ main {
     background: #ffffff;
     top: 0;
     right: 0;
+    display: none;
 }
 
 ul#social_links {
