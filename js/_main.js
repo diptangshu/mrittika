@@ -179,5 +179,71 @@
 	    
 	    
 	}
+	
+	
+			var channelId = "UC1mYjqEFPXs4aSIEBIdeGKA";
+		var apiKey = "AIzaSyB82o6B5TLfspdRkk1zFGfFu1xBF-8HHRg";
+		var maxVideosPerPlaylist = 15;
+		var maxPosts = 5;
+		var accessToken = "1404143096540699|gEFyWN19VMoCdw7GVjRLFM6X178";
+		
+		var apiUrl_playlists = "https://www.googleapis.com/youtube/v3/playlists?part=snippet&channelId=" + channelId + "&fields=items%2Fid&key=" + apiKey;
+		var apiUrl_videos = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&fields=items/snippet(title,resourceId/videoId)&maxResults=" + maxVideosPerPlaylist + "&key=" + apiKey + "&playlistId=";
+		var apiUrl_fbPosts = "https://graph.facebook.com/mrittikaband/posts?limit=" + maxPosts + "&access_token=" + accessToken;
+		
+		$(document).ready(function(){			
+				// Fetch youtube videos				
+				$.get(apiUrl_playlists, function(playlistResponse) {
+						var numPlaylists = playlistResponse.items.length;
+						console.log("Number of playlists: " + numPlaylists);
+						for (var p = 0; p < numPlaylists; p++) {
+								var playlistId = playlistResponse.items[p].id;
+								$.get(apiUrl_videos + playlistId, function(videoResponse) {
+										var numVideos = videoResponse.items.length;
+										console.log("Number of videos: " + numVideos);
+										var ytLink = "http://www.youtube.com/watch?v=";
+										for (var v = 0; v < numVideos; v++) {
+												var title = videoResponse.items[v].snippet.title;
+												var videoId = videoResponse.items[v].snippet.resourceId.videoId;
+												console.log("videoId: " + videoId);
+												var $videoLink = "<li><a href='" + ytLink + videoId + "'>" + title + "</a></li>";
+												$("ul.youtube-video-gallery").append($videoLink);
+										}
+								
+										$("ul.youtube-video-gallery").youtubeVideoGallery({ assetFolder: 'img'});
+								});	
+						}
+						
+				});
+				
+				$.get(apiUrl_fbPosts, function(response) {
+						$("#social_feeds").removeClass("loading");										
+						var numEntries = response.data.length;
+						console.log("Number of entries: " + numEntries);
+						for(var i = 0; i < numEntries; i++) {								
+								var data = response.data[i];															
+								var date = new Date(data.created_time.substr(0, 10)).toLocaleDateString();
+								
+								var feed = "<li>";
+								feed += "<img src=" + data.icon + " alt/>&nbsp;<strong>" + date + "</strong><br />" + data.message + "<br />";
+								
+								if (data.link) {
+										feed += "<a href='" + data.link + "' target='_blank'>";
+										if (data.picture) {
+												feed += "<img src='" + data.picture + "' alt/>";
+										}
+										feed += "</a>";
+								}
+								
+								feed += "</li>";
+								
+								$("#social_feeds ul").append(feed);
+						}
+						
+				});
+				
+				
+				
+		});
 		
 } )( jQuery );
