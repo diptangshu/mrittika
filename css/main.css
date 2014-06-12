@@ -350,6 +350,7 @@ ul#articles img {
 
 .plaxEl {
     width: 80%;
+    opacity: 0;
 }
 .member {	
 	float: left;
